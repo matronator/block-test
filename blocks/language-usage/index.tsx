@@ -6,25 +6,26 @@ import { Box } from '@primer/react';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const data = {
-  labels: [] as string[],
-  datasets: [] as PieDataset[],
+    labels: [] as string[],
+    datasets: [] as PieDataset[],
 };
 
 interface PieDataset {
-  label: string;
-  data: number[];
-  backgroundColor: string[];
-  borderColor: string[];
-  borderWidth: number;
+    label: string;
+    data: number[];
+    backgroundColor: string[];
+    borderColor: string[];
+    borderWidth: number;
 }
 
 type PieDatasetData = {
-  lang: string;
-  count: number;
+    lang: string;
+    count: number;
 }
 
-export default function ExampleFolderBlock(props: FolderBlockProps) {
-  const datasets = [] as PieDatasetData[];
+export default function LanguageUsage(props: FolderBlockProps) {
+
+    const datasets = [] as PieDatasetData[];
 
     function addLang(lang: string, long: string) {
         if (!data.labels.includes(long)) {
@@ -89,46 +90,19 @@ export default function ExampleFolderBlock(props: FolderBlockProps) {
     data.datasets[0].label = 'Languages used';
     data.datasets[0].borderWidth = 1;
 
-  return (
-    <Box p={4}>
-      <Box
-        borderColor="border.default"
-        borderWidth={1}
-        borderStyle="solid"
-        borderRadius={6}
-        overflow="hidden"
-      >
-        <Box
-          bg="canvas.subtle"
-          p={3}
-          borderBottomWidth={1}
-          borderBottomStyle="solid"
-          borderColor="border.default"
-        >
-          This is the folder content.
-        </Box>
+    return (
         <Box p={4}>
-          <table style={{ textAlign: "left" }}>
-            <thead>
-              <tr>
-                <th className="p-1">Path</th>
-                <th className="p-1">Size</th>
-                <th className="p-1">Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              {props.tree.map((item, index) => (
-                <tr key={index}>
-                  <td className="p-1">{item.path}</td>
-                  <td className="p-1">{item.size}</td>
-                  <td className="p-1">{item.type}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Pie data={data} />
+            <Box
+                borderColor="border.default"
+                borderWidth={1}
+                borderStyle="solid"
+                borderRadius={6}
+                overflow="hidden"
+            >
+                <Box p={4}>
+                    <Pie data={data} />
+                </Box>
+            </Box>
         </Box>
-      </Box>
-    </Box>
-  );
+    );
 }
